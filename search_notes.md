@@ -4,10 +4,11 @@
 
 可以搜索这些词：
 
-- greet
+- Invoice
+- format_invoice
 - math_utils
+- neovim_tour
 - TODO
 - diagnostic
 
 TODO: Try live grep with `<leader>fg`.
-

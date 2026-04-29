@@ -1,0 +1,18 @@
+[project]
+name = "neovim-python-tour"
+version = "0.1.0"
+description = "Small Python project for learning the local Neovim workflow."
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.pyright]
+include = ["neovim_tour", "tests", "diagnostics_playground.py"]
+typeCheckingMode = "basic"
+pythonVersion = "3.11"
+
+[tool.black]
+line-length = 88
+
