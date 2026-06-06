@@ -9,10 +9,10 @@ testpaths = ["tests"]
 pythonpath = ["."]
 
 [tool.pyright]
-include = ["neovim_tour", "tests", "diagnostics_playground.py"]
+include = ["neovim_tour", "tests", "lessons", "diagnostics_playground.py"]
 typeCheckingMode = "basic"
 pythonVersion = "3.11"
 
 [tool.black]
 line-length = 88
-
+target-version = ["py311"]

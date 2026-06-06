@@ -24,4 +24,3 @@ def apply_discount(amount: float, discount_rate: float) -> float:
 
 def format_invoice(invoice: Invoice) -> str:
     return f"{invoice.customer}: ${invoice.total:.2f}"
-

@@ -19,4 +19,3 @@ def test_apply_discount_rejects_invalid_rate() -> None:
 def test_format_invoice() -> None:
     invoice = Invoice(customer="Neovim", subtotal=100, discount_rate=0.2)
     assert format_invoice(invoice) == "Neovim: $80.00"
-

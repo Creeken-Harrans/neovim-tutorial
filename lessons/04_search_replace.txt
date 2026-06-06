@@ -1,0 +1,164 @@
+Neovim 零基础练习 04：搜索和替换
+
+目标：
+先学当前文件搜索，再学替换（单文件 + 全项目），最后学搜索高级技巧。
+
+═══════════════════════════════════════════
+第一部分：当前文件搜索
+═══════════════════════════════════════════
+
+| 命令         | 含义 |
+|-------------|------|
+| /{word}     | 向下搜索 word |
+| ?{word}     | 向上搜索 word |
+| n           | 下一个结果 |
+| N           | 上一个结果 |
+| *           | 搜索光标下的单词（向下） |
+| #           | 搜索光标下的单词（向上） |
+| <leader>nh  | 清除搜索高亮 |
+| <leader>fg  | 全项目搜索（Telescope live grep） |
+
+练习 1：当前文件搜索
+
+1. 输入 /apple 然后回车，用 n 跳到下一个结果，用 N 跳到上一个结果。
+2. 把光标放到 banana 上，按 *，用 n 跳转。
+3. 用 ?grape 向上搜索 grape。
+4. 按 <leader>nh 清除高亮。
+
+apple banana orange
+pear apple grape
+melon peach apple
+banana lemon grape
+apple kiwi mango
+
+═══════════════════════════════════════════
+第二部分：当前文件替换
+═══════════════════════════════════════════
+
+替换命令语法：
+  :{range}s/{search}/{replace}/{flags}
+
+| 片段 | 含义 |
+|------|------|
+| :    | 进入命令模式 |
+| s    | substitute（替换） |
+| %    | 范围：全文件（等价于 1,$） |
+| g    | flag：一行内所有匹配都替换 |
+| c    | flag：每次替换前确认 |
+| i    | flag：忽略大小写 |
+| I    | flag：区分大小写 |
+
+常用替换命令：
+
+| 命令 | 含义 |
+|------|------|
+| :%s/old/new/g   | 全文件替换，不确认 |
+| :%s/old/new/gc  | 全文件替换，每处确认 |
+| :s/old/new/g    | 只替换当前行 |
+| :10,20s/old/new/g | 只替换第 10 到 20 行 |
+| :'<,'>s/old/new/g  | 只替换视觉模式选中区域 |
+
+替换确认时：
+  y = 替换这一处
+  n = 跳过这一处
+  a = 替换剩余所有（不再询问）
+  q = 退出替换（已替换的不会撤销）
+  l = 替换这一处后退出
+
+练习 2：替换
+
+1. 执行 :%s/apple/invoice/gc，每次只按 y 或 n 确认。
+2. 执行完按 u 全部撤销。
+3. 选一个 apple 附近的几行做视觉模式（V + jk），然后输入 :s/apple/orange/gc 只在这些行里替换。
+
+apple banana orange
+pear apple grape
+melon peach apple
+banana lemon grape
+apple kiwi mango
+
+═══════════════════════════════════════════
+第三部分：全项目搜索和替换
+═══════════════════════════════════════════
+
+| 命令         | 含义 |
+|-------------|------|
+| <leader>fg  | Telescope 全项目搜索（对应 VSCode Ctrl-Shift-F） |
+| <leader>fr  | Spectre 全项目搜索和替换（对应 VSCode Ctrl-Shift-H） |
+| <leader>fw  | Spectre 搜索当前单词 |
+| <leader>fR  | 视觉模式下搜索选中文本 |
+
+练习 3：全项目搜索
+
+1. 按 <leader>fg，输入 TODO。
+2. 用 Ctrl-j / Ctrl-k 切换结果，按 Enter 打开。
+3. 按 Ctrl-o 回到上一个位置。
+
+练习 4：全项目替换
+
+1. 按 <leader>fr 打开 Spectre。
+2. 输入搜索词和替换词。
+3. 先检查预览，确认范围。
+4. 确认无误后执行替换。
+
+TODO: Try live grep with <leader>fg.
+TODO: Open Spectre with <leader>fr.
+FIXME: This is a broken line for practice.
+
+═══════════════════════════════════════════
+第四部分：高级搜索技巧
+═══════════════════════════════════════════
+
+搜索模式可以带正则表达式：
+
+| 模式 | 含义 |
+|------|------|
+| \v    | very magic 模式（更接近正则，推荐用） |
+| \<    | 单词边界开头 |
+| \>    | 单词边界结尾 |
+| ^     | 行首 |
+| $     | 行尾 |
+| .     | 任意字符 |
+| \d    | 数字 |
+
+例子：
+  /\v<apple>      搜索完整的单词 apple（不匹配 pineapple）
+  /\v^(def|class) 搜索以 def 或 class 开头的行
+  :%s/\s\+$//g    删除所有行尾空格
+
+练习 5：正则搜索
+
+1. 搜索 /\v<in  （搜索以 in 开头的单词），用 n 跳。
+2. 搜索 /^TODO   搜索以 TODO 开头的行。
+
+inventory invoice inside
+begin win bin
+TODO: fix this line
+  TODO: this is indented
+
+═══════════════════════════════════════════
+第五部分：全局命令（进阶）
+═══════════════════════════════════════════
+
+| 命令 | 含义 |
+|------|------|
+| :g/pattern/d       | 删除所有匹配的行 |
+| :g/pattern/t$      | 复制所有匹配的行到文件末尾 |
+| :g!/pattern/d      | 删除所有不匹配的行 |
+| :v/pattern/d       | 同上（:v 是 :g! 的别名） |
+
+练习 6：全局命令
+
+1. 输入 :g/UPPERCASE/d 删除下面所有全大写的行。
+2. 按 u 撤销。
+
+keep this line
+UPPERCASE_1
+keep this too
+UPPERCASE_2
+keep this also
+
+═══════════════════════════════════════════
+恢复操作：
+  u   = 撤销上一次修改。
+  :e! = 从磁盘重新读取文件，丢弃所有未保存修改。
