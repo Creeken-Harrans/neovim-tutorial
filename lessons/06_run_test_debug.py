@@ -2,6 +2,8 @@
 
 
 def compute_average(scores: list[float]) -> float:
+    if not scores:
+        raise ValueError("scores must not be empty")
     total = 0.0
     for score in scores:
         total += score

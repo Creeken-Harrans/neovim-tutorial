@@ -57,7 +57,9 @@ if __name__ == "__main__":
 #    注意：yw 和 yiw 的区别——yw 只复制到单词尾部，yiw 复制整个单词。
 # 5. 按 dd 删除整行，然后按 p 粘贴回来。
 
-delete_part_of_this_line_for_practice another_word third_word
+practice_operator_range = (
+    "delete_part_of_this_line_for_practice another_word third_word"
+)
 
 # ═══════════════════════════════════════════
 # 练习 2：文本对象（text objects）—— 码农必学
@@ -91,7 +93,7 @@ print("delete this entire string")
 
 # 2f. 把光标放到一个单词上，按 daw 删除单词和它周围的空格。
 #     再试 diw，只删除单词不含空格。体会 i 和 a 的区别。
-one two  three   four
+practice_spacing = "one two  three   four"
 
 # 2g. 按 vip 选中一个段落（Python 里按空行分隔），然后按 > 缩进，按 < 恢复。
 #     按 vap 选中段落 + 后面的空行。
@@ -105,10 +107,7 @@ one two  three   four
 # 2. 把光标移到下一个单词上，按 .，它自动变成 foo。
 # 3. 继续按 .，到下一个单词。
 
-alpha
-bravo
-charlie
-delta
+repeat_words = ["alpha", "bravo", "charlie", "delta"]
 
 # ═══════════════════════════════════════════
 # 练习 4：复制粘贴常用姿势
@@ -119,9 +118,9 @@ delta
 # 4. 按 p 粘贴到光标后，按 P 粘贴到光标前。
 # 5. dd 删除的行也会进寄存器，所以 dd + p = 剪切+粘贴。
 
-copy_this_line        # 按 yy 复制这行
+copy_this_line = "按 yy 复制这行到下面"
 
-paste_here            # 光标放下一行，按 p
+paste_here = "光标放这行，按 p 粘贴上面那行"
 
 # ═══════════════════════════════════════════
 # 练习 5：视觉模式（像普通编辑器一样先选中再操作）
@@ -131,22 +130,17 @@ paste_here            # 光标放下一行，按 p
 # Ctrl-v = 块选择（矩形选区）
 
 # 5a. 按 V 选中下面一行，按 j 扩大选区到 3 行，然后按 > 缩进，按 < 恢复。
-line one
-line two
-line three
+visual_lines = ["line one", "line two", "line three"]
 
 # 5b. 块选择（Ctrl-v）练习：
 #     把光标放到下面列的开头，按 Ctrl-v，按 2j 向下选 3 行，
 #     按 5l 向右选 5 列，按 I（大写 i），输入 #，按 Esc。
 #     等一会儿，3 行都会加上 # 前缀。
-col1 col2 col3
-col1 col2 col3
-col1 col2 col3
+block_cols = ["col1 col2 col3", "col1 col2 col3", "col1 col2 col3"]
 
 # 5c. 在本配置里，视觉模式下：
-#     J = 选中内容下移一行
-#     K = 选中内容上移一行
-#     （对应 VSCode 的 Move Line Up/Down）
+#     J = 选中内容下移一行（对应 VSCode Move Line Down）
+#     K = 选中内容上移一行（对应 VSCode Move Line Up）
 
 # ═══════════════════════════════════════════
 # 练习 6：其他实用小操作
@@ -162,13 +156,13 @@ col1 col2 col3
 # =     = 自动缩进（=ip 缩进整段，== 缩进当前行，gg=G 缩进全文件）
 # gf    = 打开光标下的文件路径
 
-count = 0        # 光标放到 0 上，按 Ctrl-a 变成 1，再按 Ctrl-x 回来
+count = 0  # 光标放到 0 上，按 Ctrl-a 变成 1，再按 Ctrl-x 回来
 # 按 gg=G 格式化整个文件的缩进（试试看）
 
-hello world      # 光标放到这一行，按 gUiw 看单词变成 HELLO
+uppercase_practice = "hello world"  # 光标放这行，按 gUiw 看 hello 变 HELLO
 
-line_to_join_1   # 光标放这行，按 J
-line_to_join_2   # 试试把这两行合并成一行
+join_line_1 = "line to join 1"  # 光标放这行，按 J 合并下一行
+join_line_2 = "line to join 2"  # 被合并上来的行
 
 # ═══════════════════════════════════════════
 # 练习 7：寄存器（registers）—— 多剪贴板
@@ -190,13 +184,13 @@ line_to_join_2   # 试试把这两行合并成一行
 
 # 7a. 按 "ayy 复制下面这一行到寄存器 a。
 #     然后到第 7b 区域按 "ap 粘贴。
-register_a: copy this line to register a
+register_a_source = "copy this line to register a"
 
 # 7b. 光标放下面，按 "ap 把上面那行粘贴过来：
-#     (paste register_a here)
+register_a_dest = "(paste register a here)"
 
 # 7c. 按 "bdd 剪切下面这一行到寄存器 b，再按 "bp 粘贴到下面。
-cut_me_to_register_b
+cut_me_to_register_b = "cut me to register b"
 
 # ═══════════════════════════════════════════
 # 练习 8：宏（macros）—— 录制并重放操作
@@ -209,11 +203,7 @@ cut_me_to_register_b
 #
 # 例子：把下面的 5 行全部变成引号括起来的字符串
 
-line_0
-line_1
-line_2
-line_3
-line_4
+macro_lines = ["line_0", "line_1", "line_2", "line_3", "line_4"]
 
 # 步骤：
 # 1. 光标放到 line_0 上。
@@ -249,13 +239,14 @@ line_4
 #   '0       = 上一次退出时的位置
 
 # 9a. 在下面这行上按 ma 设置标记 a：
-mark_a_position_here
+mark_a_position_here = "mark a here"
 
 # 9b. 移动到文件任意位置，按 `a 回到上面这行。
 #     再按 '' 回到刚才移动到的位置。
 
 # 9c. 修改下面这行（随便加个字），保存后按 '. 跳回来。
-modify_and_return_here
+modify_and_return_here = "modify me and press `. to return"
+
 
 # ═══════════════════════════════════════════
 # 练习 10：综合练习
@@ -264,6 +255,8 @@ modify_and_return_here
 def broken_function(x, y, z):
     result = x + y + z
     return result
+
+
 # 1. 用 ci( 修改函数参数。
 # 2. 用 ciw 修改函数名。
 # 3. 用 dd + p 移动行顺序。
